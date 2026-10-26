@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { ArrowDown, ArrowRight, Camera, Check, Disc3, Menu, Music2, X } from "lucide-react";
+import { ArrowDown, ArrowRight, Camera, Check, Disc3, Menu, X } from "lucide-react";
 
 const artists = [
   { name: "ItzGazz", code: "01", note: "RHYTHM / PRESENCE", tone: "tone-a", image: "/artists/itzgazz.png" },
@@ -13,7 +13,7 @@ const artists = [
 ];
 
 function Mark() {
-  return <a href="#top" className="mark" aria-label="D.Town Records home"><span>D.</span><b>TOWN</b><small>RECORDS</small></a>;
+  return <a href="#top" className="mark" aria-label="D.Town Records home"><img src="/dtown-records-logo.png" alt="D.Town Records" /></a>;
 }
 
 export default function Home() {
@@ -62,7 +62,7 @@ export default function Home() {
           <p>We back artists with the freedom, structure and stage to build careers on their own terms.</p>
           <a href="#artists" className="circle-link" aria-label="Meet the artists"><ArrowDown/></a>
         </div>
-        <div className="record" aria-hidden="true"><div className="record-ring"><div className="record-label"><Music2/><span>D.TOWN<br/>RECORDS</span></div></div></div>
+        <div className="record" aria-hidden="true"><div className="record-ring"><div className="record-label official-logo"><img src="/dtown-records-logo.png" alt="" /></div></div></div>
       </section>
 
       <div className="ticker" aria-hidden="true"><div>ARTISTS FIRST ★ MUSIC WITH PURPOSE ★ BUILT INDEPENDENTLY ★ ARTISTS FIRST ★ MUSIC WITH PURPOSE ★ BUILT INDEPENDENTLY ★</div></div>
