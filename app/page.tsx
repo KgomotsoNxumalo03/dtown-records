@@ -49,6 +49,7 @@ export default function Home() {
         <div className={`nav-links ${menuOpen ? "open" : ""}`}>
           <a href="#artists" onClick={() => setMenuOpen(false)}>Artists</a>
           <a href="#ethos" onClick={() => setMenuOpen(false)}>Our ethos</a>
+          <a href="/studio">Studio</a>
           <a href="https://www.instagram.com/d.townrecords/" target="_blank" rel="noreferrer">Instagram</a>
           <a className="nav-cta" href="#book" onClick={() => setMenuOpen(false)}>Book an artist <ArrowRight size={16}/></a>
         </div>
