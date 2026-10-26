@@ -8,6 +8,8 @@ function clean(value: unknown, max = 500) {
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as Record<string, unknown>;
+    if (clean(body.website, 100)) return Response.json({ ok: true }, { status: 201 });
+    if (clean(body.consent, 10) !== "yes") return Response.json({ error: "Please confirm that we may use your details to respond." }, { status: 400 });
     const payload = {
       name: clean(body.name, 120), email: clean(body.email, 160), phone: clean(body.phone, 40),
       sessionType: clean(body.sessionType, 100), preferredDate: clean(body.preferredDate, 30),

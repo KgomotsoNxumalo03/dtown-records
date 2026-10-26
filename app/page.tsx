@@ -1,16 +1,8 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-import { ArrowDown, ArrowRight, Camera, Check, Disc3, Menu, X } from "lucide-react";
-
-const artists = [
-  { name: "ItzGazz", code: "01", note: "RHYTHM / PRESENCE", tone: "tone-a", image: "/artists/itzgazz.png" },
-  { name: "DreyEGO", code: "02", note: "EDGE / ENERGY", tone: "tone-b", image: "/artists/dreyego.png" },
-  { name: "Priest Pope", code: "03", note: "VOICE / VISION", tone: "tone-c", image: "/artists/priest-pope.png" },
-  { name: "Kory", code: "04", note: "SOUL / MOTION", tone: "tone-d" },
-  { name: "PediSkyWalker", code: "05", note: "FUTURE / ROOTS", tone: "tone-e", image: "/artists/pediskywalker.png" },
-  { name: "LaCASA", code: "06", note: "LIVE / LIMITLESS", tone: "tone-f", image: "/artists/lacasa.png" },
-];
+import { FormEvent, useEffect, useState } from "react";
+import { ArrowDown, ArrowRight, Camera, Check, Disc3, Menu, Play, X } from "lucide-react";
+import { artists, INSTAGRAM_URL, YOUTUBE_URL } from "../lib/artists";
 
 function Mark() {
   return <a href="#top" className="mark" aria-label="D.Town Records home"><img src="/dtown-records-logo.png" alt="D.Town Records" /></a>;
@@ -20,6 +12,11 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedArtist, setSelectedArtist] = useState("ItzGazz");
   const [status, setStatus] = useState<{type: "idle" | "sending" | "success" | "error"; message?: string}>({ type: "idle" });
+
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get("artist");
+    if (requested && artists.some((artist) => artist.name === requested)) setSelectedArtist(requested);
+  }, []);
 
   function book(name: string) {
     setSelectedArtist(name);
@@ -48,9 +45,10 @@ export default function Home() {
         <Mark />
         <div className={`nav-links ${menuOpen ? "open" : ""}`}>
           <a href="#artists" onClick={() => setMenuOpen(false)}>Artists</a>
-          <a href="#ethos" onClick={() => setMenuOpen(false)}>Our ethos</a>
-          <a href="/studio">Studio</a>
-          <a href="https://www.instagram.com/d.townrecords/" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
+          <a href="#latest" onClick={() => setMenuOpen(false)}>Latest</a>
+          <a href="/studio" onClick={() => setMenuOpen(false)}>Studio</a>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Instagram</a>
           <a className="nav-cta" href="#book" onClick={() => setMenuOpen(false)}>Book an artist <ArrowRight size={16}/></a>
         </div>
         <button className="menu" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">{menuOpen ? <X/> : <Menu/>}</button>
@@ -79,7 +77,7 @@ export default function Home() {
               </div>
               <div className="artist-meta"><span>{artist.code}</span><span>{artist.note}</span></div>
               <h3>{artist.name}</h3>
-              <button onClick={() => book(artist.name)}>Booking enquiry <ArrowRight size={17}/></button>
+              <div className="artist-links"><a href={`/artists/${artist.slug}`}>View profile</a><button onClick={() => book(artist.name)}>Book <ArrowRight size={17}/></button></div>
             </article>
           ))}
         </div>
@@ -94,9 +92,19 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="about" className="about shell">
+        <div><span className="section-no">03 / About D.Town</span><p className="kicker">Independent by design.</p></div>
+        <div><h2>A HOME FOR<br/>DISTINCT <i>VOICES.</i></h2><p>D.Town Records is a South African independent record label focused on artist development, creative control and meaningful collaboration. We connect the work made in the studio with audiences, venues and opportunities beyond it.</p><div className="about-facts"><span>South Africa</span><span>Artist bookings</span><span>Studio sessions</span></div></div>
+      </section>
+
+      <section id="latest" className="latest">
+        <div className="shell"><div className="latest-head"><span>04 / Latest from D.Town</span><h2>STAY CLOSE<br/>TO THE <i>WORK.</i></h2></div><div className="latest-grid"><a href={INSTAGRAM_URL} target="_blank" rel="noreferrer"><Camera/><b>From the roster</b><p>New visuals, sessions and artist updates from the official D.Town feed.</p><span>Open Instagram <ArrowRight/></span></a><a href={YOUTUBE_URL} target="_blank" rel="noreferrer"><Play/><b>Watch & listen</b><p>Music and video from D.Town Records on the label’s YouTube channel.</p><span>Open YouTube <ArrowRight/></span></a><a href="/studio"><Disc3/><b>Inside the studio</b><p>Meet Gareth and request a recording, production or mixing session.</p><span>Explore studio <ArrowRight/></span></a></div></div>
+      </section>
+
       <section id="book" className="booking shell">
-        <div className="booking-intro"><span>03 / Book the sound</span><h2>BRING<br/>D.TOWN<br/><i>LIVE.</i></h2><p>Planning a festival, club night, campus event, brand activation or private show? Tell us what you’re building and who you want on the stage.</p></div>
+        <div className="booking-intro"><span>05 / Book the sound</span><h2>BRING<br/>D.TOWN<br/><i>LIVE.</i></h2><p>Planning a festival, club night, campus event, brand activation or private show? Tell us what you’re building and who you want on the stage.</p><p className="response-time">You’ll receive an on-screen reference immediately. The team aims to respond within 1–2 business days.</p></div>
         <form onSubmit={submit}>
+          <div className="hp-field" aria-hidden="true"><label htmlFor="website">Website</label><input id="website" name="website" tabIndex={-1} autoComplete="off"/></div>
           <div className="field full"><label htmlFor="artist">Artist *</label><select id="artist" name="artist" value={selectedArtist} onChange={e => setSelectedArtist(e.target.value)}>{artists.map(a => <option key={a.name}>{a.name}</option>)}<option>Multiple artists</option></select></div>
           <div className="field"><label htmlFor="name">Your name *</label><input id="name" name="name" required placeholder="Full name"/></div>
           <div className="field"><label htmlFor="email">Email *</label><input id="email" name="email" type="email" required placeholder="you@email.com"/></div>
@@ -108,14 +116,15 @@ export default function Home() {
           <div className="field"><label htmlFor="city">City *</label><input id="city" name="city" required placeholder="City / province"/></div>
           <div className="field full"><label htmlFor="budget">Estimated budget</label><select id="budget" name="budget" defaultValue=""><option value="">Prefer not to say</option><option>Under R10,000</option><option>R10,000 – R25,000</option><option>R25,000 – R50,000</option><option>R50,000+</option></select></div>
           <div className="field full"><label htmlFor="message">Tell us about the event</label><textarea id="message" name="message" rows={4} placeholder="Audience, set length, production and anything else we should know..."/></div>
+          <label className="consent"><input type="checkbox" name="consent" value="yes" required/><span>I agree that D.Town Records may use these details to assess and respond to my enquiry. See the <a href="/privacy">privacy notice</a>.</span></label>
           <button className="submit" disabled={status.type === "sending"}>{status.type === "sending" ? "Sending enquiry..." : <>Send booking enquiry <ArrowRight/></>}</button>
           {status.type !== "idle" && status.type !== "sending" && <div className={`form-status ${status.type}`} role="status">{status.type === "success" && <Check/>}{status.message}</div>}
         </form>
       </section>
 
       <footer>
-        <div className="shell footer-top"><div><Mark/><p>Independent. Artist-first. Always moving.</p></div><div><span>Follow the movement</span><a href="https://www.instagram.com/d.townrecords/" target="_blank" rel="noreferrer"><Camera/> @d.townrecords</a><a href="https://youtube.com/@dtownrecords1.0" target="_blank" rel="noreferrer"><Disc3/> D.Town Records</a></div><div><span>Explore</span><a href="#artists">Artists</a><a href="#ethos">Our ethos</a><a href="#book">Bookings</a></div></div>
-        <div className="shell footer-bottom"><span>© {new Date().getFullYear()} D.Town Records</span><span>Artists first, from day one.</span></div>
+        <div className="shell footer-top"><div><Mark/><p>Independent. Artist-first. Always moving.</p><small>Serving artists, venues and collaborators across South Africa.</small></div><div><span>Follow the movement</span><a href={INSTAGRAM_URL} target="_blank" rel="noreferrer"><Camera/> @d.townrecords</a><a href={YOUTUBE_URL} target="_blank" rel="noreferrer"><Disc3/> D.Town Records</a></div><div><span>Explore</span><a href="#artists">Artists</a><a href="#about">About</a><a href="#latest">Latest</a><a href="/studio">Studio</a><a href="#book">Bookings</a></div></div>
+        <div className="shell footer-bottom"><span>© {new Date().getFullYear()} D.Town Records</span><a href="/privacy">Privacy</a><span>Artists first, from day one.</span></div>
       </footer>
     </main>
   );

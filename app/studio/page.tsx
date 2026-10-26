@@ -56,8 +56,9 @@ export default function StudioPage() {
     </section>
 
     <section className="studio-book shell" id="studio-booking">
-      <div className="studio-book-intro"><span>04 / Request a session</span><h2>LET’S MAKE<br/>SOMETHING<br/><i>EXTRAORDINARY.</i></h2><p>Tell us where your project is now and what you want to achieve. This request helps Gareth prepare the right session for you.</p></div>
+      <div className="studio-book-intro"><span>04 / Request a session</span><h2>LET’S MAKE<br/>SOMETHING<br/><i>EXTRAORDINARY.</i></h2><p>Tell us where your project is now and what you want to achieve. This request helps Gareth prepare the right session for you.</p><p className="response-time">You’ll receive an on-screen reference immediately. The team aims to respond within 1–2 business days.</p></div>
       <form onSubmit={submit}>
+        <div className="hp-field" aria-hidden="true"><label htmlFor="studio-website">Website</label><input id="studio-website" name="website" tabIndex={-1} autoComplete="off"/></div>
         <div className="field"><label htmlFor="studio-name">Your name *</label><input id="studio-name" name="name" required placeholder="Full name"/></div>
         <div className="field"><label htmlFor="studio-email">Email *</label><input id="studio-email" name="email" type="email" required placeholder="you@email.com"/></div>
         <div className="field"><label htmlFor="studio-phone">Phone</label><input id="studio-phone" name="phone" placeholder="+27 ..."/></div>
@@ -67,6 +68,7 @@ export default function StudioPage() {
         <div className="field"><label htmlFor="genre">Genre / sound</label><input id="genre" name="genre" placeholder="e.g. hip-hop, amapiano, R&B"/></div>
         <div className="field"><label htmlFor="stage">Project stage</label><select id="stage" name="projectStage" defaultValue=""><option value="">Select current stage</option><option>Idea / early concept</option><option>Lyrics or demo ready</option><option>Instrumental ready</option><option>Recorded — needs mixing</option><option>Existing project consultation</option></select></div>
         <div className="field full"><label htmlFor="studio-message">Tell Gareth about your project</label><textarea id="studio-message" name="message" rows={5} placeholder="What are you making, what references inspire you, and what would make this session a success?"/></div>
+        <label className="consent"><input type="checkbox" name="consent" value="yes" required/><span>I agree that D.Town Records may use these details to assess and respond to my studio request. See the <a href="/privacy">privacy notice</a>.</span></label>
         <button className="submit" disabled={status.type==="sending"}>{status.type==="sending"?"Sending request...":<>Request studio session <ArrowRight/></>}</button>
         {status.type!=="idle"&&status.type!=="sending"&&<div className={`form-status ${status.type}`} role="status">{status.type==="success"&&<Check/>}{status.message}</div>}
       </form>
