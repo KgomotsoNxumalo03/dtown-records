@@ -1,7 +1,9 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { ArrowLeft, ArrowRight, Check, Headphones, Mic2, SlidersHorizontal, Waves } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ExternalLink, Headphones, Mic2, Play, SlidersHorizontal, Waves } from "lucide-react";
+
+const STUDIO_SOUND_URL = "https://www.instagram.com/reels/audio/1273070734022448?dlrf=MWxwZmF2OG9jMTE1OQ==";
 
 export default function StudioPage() {
   const [status, setStatus] = useState<{type:"idle"|"sending"|"success"|"error";message?:string}>({type:"idle"});
@@ -25,6 +27,11 @@ export default function StudioPage() {
     <header className="studio-hero shell">
       <div className="studio-tag"><span>Studio sessions</span><span>Production / Recording / Mixing</span></div>
       <div className="studio-title"><p>Turn the idea into the record.</p><h1>MAKE<br/><i>NOISE.</i></h1></div>
+      <a className="studio-sound" href={STUDIO_SOUND_URL} target="_blank" rel="noreferrer" aria-label="Listen to the D.Town studio sound on Instagram">
+        <span className="studio-sound-play"><Play fill="currentColor"/></span>
+        <span><small>Studio sound</small><strong>Listen on Instagram</strong></span>
+        <ExternalLink className="studio-sound-external"/>
+      </a>
       <div className="studio-wave" aria-hidden="true">{Array.from({length:28}).map((_,i)=><span key={i} style={{height:`${18 + ((i*37)%82)}%`}}/>)}</div>
     </header>
 
