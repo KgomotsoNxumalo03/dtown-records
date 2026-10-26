@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import { ArrowDown, ArrowRight, Camera, Check, Disc3, Menu, Music2, X } from "lucide-react";
 
 const artists = [
-  { name: "ItzGazz", code: "01", note: "RHYTHM / PRESENCE", tone: "tone-a" },
+  { name: "ItzGazz", code: "01", note: "RHYTHM / PRESENCE", tone: "tone-a", image: "/artists/itzgazz.png" },
   { name: "DreyEGO", code: "02", note: "EDGE / ENERGY", tone: "tone-b" },
   { name: "Priest Pope", code: "03", note: "VOICE / VISION", tone: "tone-c" },
   { name: "Kory", code: "04", note: "SOUL / MOTION", tone: "tone-d" },
@@ -72,7 +72,10 @@ export default function Home() {
         <div className="artist-grid">
           {artists.map((artist) => (
             <article className="artist-card" key={artist.name}>
-              <div className={`artist-visual ${artist.tone}`}><span className="artist-initial">{artist.name.slice(0,1)}</span><span className="grain"/></div>
+              <div className={`artist-visual ${artist.tone} ${artist.image ? "has-photo" : ""}`}>
+                {artist.image && <img src={artist.image} alt={`${artist.name}, D.Town Records artist`} />}
+                <span className="artist-initial">{artist.name.slice(0,1)}</span><span className="grain"/>
+              </div>
               <div className="artist-meta"><span>{artist.code}</span><span>{artist.note}</span></div>
               <h3>{artist.name}</h3>
               <button onClick={() => book(artist.name)}>Booking enquiry <ArrowRight size={17}/></button>

@@ -43,6 +43,10 @@ button,input,select,textarea { font:inherit; }
 .artist-card { border-top:1px solid var(--line); padding-top:12px; }
 .artist-visual { aspect-ratio:4/5; position:relative; overflow:hidden; background-color:#1c1c1c; transition:.4s; }
 .artist-card:hover .artist-visual { filter:contrast(1.2); transform:translateY(-5px); }
+.artist-visual.has-photo::before,.artist-visual.has-photo::after { display:none; }
+.artist-visual.has-photo img { width:100%; height:100%; object-fit:cover; object-position:center 48%; transform:scale(1.18); filter:grayscale(.22) contrast(1.07); transition:transform .5s ease,filter .5s ease; }
+.artist-card:hover .artist-visual.has-photo img { transform:scale(1.22); filter:grayscale(0) contrast(1.08); }
+.artist-visual.has-photo .artist-initial { display:none; }
 .artist-visual::before { content:""; position:absolute; width:68%; aspect-ratio:1; border-radius:50%; left:16%; top:17%; background:radial-gradient(circle at 35% 30%,#eee 0,#888 12%,#222 43%,#050505 70%); filter:grayscale(1) contrast(1.6); }
 .artist-visual::after { content:""; position:absolute; inset:40% 7% -15%; border-radius:50% 50% 0 0; background:linear-gradient(120deg,#111,#777 50%,#090909); filter:grayscale(1); }
 .tone-b::before { left:8%; top:22%; }.tone-c::before { left:26%; top:12%; }.tone-d::after { background:linear-gradient(45deg,#eee,#222 45%,#090909); }.tone-e::before { transform:scale(.85); }.tone-f::after { background:linear-gradient(160deg,#111,#aaa,#050505); }
