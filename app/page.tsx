@@ -8,7 +8,7 @@ const artists = [
   { name: "DreyEGO", code: "02", note: "EDGE / ENERGY", tone: "tone-b", image: "/artists/dreyego.png" },
   { name: "Priest Pope", code: "03", note: "VOICE / VISION", tone: "tone-c", image: "/artists/priest-pope.png" },
   { name: "Kory", code: "04", note: "SOUL / MOTION", tone: "tone-d" },
-  { name: "PediSkyWalker", code: "05", note: "FUTURE / ROOTS", tone: "tone-e" },
+  { name: "PediSkyWalker", code: "05", note: "FUTURE / ROOTS", tone: "tone-e", image: "/artists/pediskywalker.png" },
   { name: "LaCASA", code: "06", note: "LIVE / LIMITLESS", tone: "tone-f", image: "/artists/lacasa.png" },
 ];
 
