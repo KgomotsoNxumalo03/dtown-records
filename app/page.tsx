@@ -5,7 +5,7 @@ import { ArrowDown, ArrowRight, Camera, Check, Disc3, Menu, X } from "lucide-rea
 
 const artists = [
   { name: "ItzGazz", code: "01", note: "RHYTHM / PRESENCE", tone: "tone-a", image: "/artists/itzgazz.png" },
-  { name: "DreyEGO", code: "02", note: "EDGE / ENERGY", tone: "tone-b" },
+  { name: "DreyEGO", code: "02", note: "EDGE / ENERGY", tone: "tone-b", image: "/artists/dreyego.png" },
   { name: "Priest Pope", code: "03", note: "VOICE / VISION", tone: "tone-c" },
   { name: "Kory", code: "04", note: "SOUL / MOTION", tone: "tone-d" },
   { name: "PediSkyWalker", code: "05", note: "FUTURE / ROOTS", tone: "tone-e" },
