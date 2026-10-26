@@ -33,8 +33,15 @@ export default function StudioPage() {
       <div className="producer-copy"><p className="role">Gareth Van Den Aardweg · Producer / Sound Engineer</p><h2>MUSIC IS A<br/><em>CONVERSATION.</em></h2><div className="quote-grid"><p>I’m Gareth Van Den Aardweg, and I thrive on collaboration. I believe in the power of bringing different perspectives together—of creating something greater than the sum of its parts.</p><p>I’m not just a producer. I’m a collaborator, a facilitator, a catalyst. I love working with artists who are passionate, willing to push boundaries, and ready to create something extraordinary. It’s about the connection, the synergy, the shared vision.</p></div></div>
     </section>
 
+    <section className="studio-gallery shell" id="gallery" aria-label="Inside D.Town Records studio">
+      <div className="gallery-title"><span>02 / In the room</span><p>From first idea to final playback—the work happens in the room, together.</p></div>
+      <figure className="gallery-main"><img src="/studio/gareth-portrait.png" alt="Gareth Van Den Aardweg"/><figcaption>Gareth Van Den Aardweg · Producer / Sound Engineer</figcaption></figure>
+      <figure className="gallery-detail"><img src="/studio/recording-suite.png" alt="D.Town Records recording session workspace"/><figcaption>Session in progress</figcaption></figure>
+      <figure className="gallery-live"><img src="/studio/gareth-live-enhanced.png" alt="Gareth performing live behind his production setup"/><figcaption>Live energy. Studio precision.</figcaption></figure>
+    </section>
+
     <section className="studio-services">
-      <div className="shell"><span className="studio-kicker">02 / What we can build</span><div className="service-grid">
+      <div className="shell"><span className="studio-kicker">03 / What we can build</span><div className="service-grid">
         <article><Mic2/><b>Recording</b><p>Capture vocals and instruments with a session shaped around your sound.</p></article>
         <article><SlidersHorizontal/><b>Production</b><p>Develop the arrangement, energy and sonic identity from first idea to full record.</p></article>
         <article><Waves/><b>Mixing</b><p>Bring clarity, depth and impact to every element of your track.</p></article>
@@ -42,7 +49,7 @@ export default function StudioPage() {
     </section>
 
     <section className="studio-book shell" id="studio-booking">
-      <div className="studio-book-intro"><span>03 / Request a session</span><h2>LET’S MAKE<br/>SOMETHING<br/><i>EXTRAORDINARY.</i></h2><p>Tell us where your project is now and what you want to achieve. This request helps Gareth prepare the right session for you.</p></div>
+      <div className="studio-book-intro"><span>04 / Request a session</span><h2>LET’S MAKE<br/>SOMETHING<br/><i>EXTRAORDINARY.</i></h2><p>Tell us where your project is now and what you want to achieve. This request helps Gareth prepare the right session for you.</p></div>
       <form onSubmit={submit}>
         <div className="field"><label htmlFor="studio-name">Your name *</label><input id="studio-name" name="name" required placeholder="Full name"/></div>
         <div className="field"><label htmlFor="studio-email">Email *</label><input id="studio-email" name="email" type="email" required placeholder="you@email.com"/></div>
