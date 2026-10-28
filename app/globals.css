@@ -103,6 +103,11 @@ footer { border-top:1px solid var(--line); padding:80px 0 24px; }
 @media(max-width:560px){.featured-work{grid-template-columns:1fr;padding-block:90px}.featured-visuals{height:430px}.featured-copy h2,.trust h2,.session-guide h2{font-size:15vw}.featured-label p{max-width:none}.trust{padding-block:95px;gap:35px}.trust-list>div{grid-template-columns:1fr;gap:14px}.trust-list a{justify-self:start}.session-guide{padding-block:95px}.session-guide-grid{grid-template-columns:1fr}.session-guide-grid article,.session-guide-grid article+article{border-right:0;border-bottom:1px solid var(--line);padding:28px 0;min-height:0}.session-guide-grid span{margin-bottom:35px}.studio-footer{align-items:flex-start}}
 @media(prefers-reduced-motion:reduce){.studio-wave span{animation:none}.studio-gallery img,.featured-visuals img{transition:none}.circle-link:hover,.studio-sound:hover{transform:none}}
 
+/* Global back-to-top control */
+.back-to-top{position:fixed;z-index:90;right:24px;bottom:24px;width:66px;height:66px;border-radius:50%;border:1px solid rgba(255,255,255,.32);background:rgba(8,8,8,.9);color:var(--white);display:grid;place-content:center;justify-items:center;gap:2px;box-shadow:0 12px 35px rgba(0,0,0,.4);backdrop-filter:blur(10px);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(14px);transition:opacity .25s ease,transform .25s ease,visibility .25s ease,background .25s ease,color .25s ease}.back-to-top.visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}.back-to-top:hover{background:var(--white);color:var(--black)}.back-to-top svg{width:18px;height:18px}.back-to-top span{text-transform:uppercase;letter-spacing:.14em;font-size:8px;font-weight:800;margin-left:.14em}
+@media(max-width:560px){.back-to-top{right:14px;bottom:14px;width:56px;height:56px}}
+@media(prefers-reduced-motion:reduce){.back-to-top{transition:none}}
+
 /* Studio */
 .studio-page{background:#0a0a0a;min-height:100vh}.studio-nav{height:96px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
 .back-link{display:flex;align-items:center;gap:12px;text-transform:uppercase;letter-spacing:.15em;font-size:10px;color:var(--grey)}.back-link:hover{color:white}
