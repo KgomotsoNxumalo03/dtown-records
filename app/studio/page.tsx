@@ -2,15 +2,31 @@
 
 /* eslint-disable @next/next/no-img-element */
 
-import { FormEvent, useState } from "react";
-import { ArrowLeft, ArrowRight, Check, ExternalLink, Headphones, Mic2, Play, SlidersHorizontal, Waves } from "lucide-react";
+import { FormEvent, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, Check, Headphones, Mic2, Pause, Play, SlidersHorizontal, Waves } from "lucide-react";
 import Link from "next/link";
 
-const STUDIO_SOUND_URL = "https://www.instagram.com/reels/audio/1273070734022448?dlrf=MWxwZmF2OG9jMTE1OQ==";
+const STUDIO_SOUND_URL = "/audio/ctrl-the-stacks.mp3";
+
+function formatTime(value: number) {
+  if (!Number.isFinite(value)) return "0:00";
+  const minutes = Math.floor(value / 60);
+  return `${minutes}:${Math.floor(value % 60).toString().padStart(2, "0")}`;
+}
 
 export default function StudioPage() {
   const [status, setStatus] = useState<{type:"idle"|"sending"|"success"|"error";message?:string}>({type:"idle"});
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const audioRef = useRef<HTMLAudioElement>(null);
   const today = new Date().toLocaleDateString("en-CA");
+
+  async function toggleAudio() {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (audio.paused) await audio.play(); else audio.pause();
+  }
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); setStatus({type:"sending"});
@@ -32,11 +48,13 @@ export default function StudioPage() {
     <header className="studio-hero shell" id="studio-content" tabIndex={-1}>
       <div className="studio-tag"><span>Studio sessions</span><span>Production / Recording / Mixing</span></div>
       <div className="studio-title"><p>Turn the idea into the record.</p><h1>MAKE<br/><i>NOISE.</i></h1></div>
-      <a className="studio-sound" href={STUDIO_SOUND_URL} target="_blank" rel="noreferrer" aria-label="Listen to the D.Town studio sound on Instagram">
-        <span className="studio-sound-play"><Play fill="currentColor"/></span>
-        <span><small>Studio sound</small><strong>Listen on Instagram</strong></span>
-        <ExternalLink className="studio-sound-external"/>
-      </a>
+      <div className="studio-sound" aria-label="On-site music player">
+        <audio ref={audioRef} src={STUDIO_SOUND_URL} preload="metadata" onPlay={()=>setIsPlaying(true)} onPause={()=>setIsPlaying(false)} onEnded={()=>setIsPlaying(false)} onLoadedMetadata={(event)=>setDuration(event.currentTarget.duration)} onTimeUpdate={(event)=>setCurrentTime(event.currentTarget.currentTime)}/>
+        <button className="studio-sound-play" type="button" onClick={toggleAudio} aria-label={isPlaying?"Pause CTRL The Stacks":"Play CTRL The Stacks"}>{isPlaying?<Pause fill="currentColor"/>:<Play fill="currentColor"/>}</button>
+        <span className="studio-sound-copy"><small>Now playing</small><strong>CTRL The Stacks</strong><em>Pexo &amp; Dreyego</em></span>
+        <span className="studio-sound-time" aria-hidden="true">{formatTime(currentTime)} / {formatTime(duration)}</span>
+        <input className="studio-sound-progress" type="range" min="0" max={duration||0} step="0.1" value={currentTime} onChange={(event)=>{const next=Number(event.target.value);if(audioRef.current)audioRef.current.currentTime=next;setCurrentTime(next)}} aria-label="Audio playback position"/>
+      </div>
       <div className="studio-wave" aria-hidden="true">{Array.from({length:28}).map((_,i)=><span key={i} style={{height:`${18 + ((i*37)%82)}%`}}/>)}</div>
     </header>
 
