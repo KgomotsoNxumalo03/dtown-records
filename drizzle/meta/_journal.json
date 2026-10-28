@@ -15,6 +15,13 @@
       "when": 1793016489246,
       "tag": "0001_dear_avengers",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1793170044546,
+      "tag": "0002_complete_shen",
+      "breakpoints": true
     }
   ]
 }

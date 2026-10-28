@@ -14,6 +14,7 @@ export const enquiries = sqliteTable("enquiries", {
   city: text("city").notNull(),
   budget: text("budget").notNull().default(""),
   message: text("message").notNull().default(""),
+  eventLink: text("event_link").notNull().default(""),
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
 
@@ -28,5 +29,6 @@ export const studioBookings = sqliteTable("studio_bookings", {
   genre: text("genre").notNull().default(""),
   projectStage: text("project_stage").notNull().default(""),
   message: text("message").notNull().default(""),
+  demoLink: text("demo_link").notNull().default(""),
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
