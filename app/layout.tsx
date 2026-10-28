@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BackToTop } from "../components/back-to-top";
+import { ContactGareth } from "../components/contact-gareth";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="antialiased"><div id="page-top" tabIndex={-1}/>{children}<BackToTop/></body>
+      <body className="antialiased"><div id="page-top" tabIndex={-1}/>{children}<ContactGareth/><BackToTop/></body>
     </html>
   );
 }

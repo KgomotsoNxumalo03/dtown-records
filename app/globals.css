@@ -108,6 +108,11 @@ footer { border-top:1px solid var(--line); padding:80px 0 24px; }
 @media(max-width:560px){.back-to-top{right:14px;bottom:14px;width:56px;height:56px}}
 @media(prefers-reduced-motion:reduce){.back-to-top{transition:none}}
 
+/* Direct Gareth contact */
+.gareth-contact{position:fixed;z-index:89;left:24px;bottom:24px;display:flex;align-items:stretch;background:rgba(8,8,8,.92);border:1px solid rgba(255,255,255,.26);box-shadow:0 12px 35px rgba(0,0,0,.4);backdrop-filter:blur(10px);color:var(--white)}.gareth-contact-name{display:flex;flex-direction:column;justify-content:center;padding:10px 16px;border-right:1px solid var(--line)}.gareth-contact-name strong{font-size:12px}.gareth-contact-name span{color:var(--grey);font-size:9px;letter-spacing:.06em;margin-top:3px}.gareth-contact>a{display:flex;align-items:center;gap:8px;padding:0 14px;border-right:1px solid var(--line);text-transform:uppercase;letter-spacing:.1em;font-size:9px;font-weight:800;transition:.2s}.gareth-contact>a:last-child{border-right:0}.gareth-contact>a:hover{background:var(--white);color:var(--black)}.gareth-contact>a.whatsapp:hover{background:#25d366;color:#07140c}.gareth-contact svg{width:16px;height:16px}
+@media(max-width:680px){.gareth-contact{left:14px;bottom:14px}.gareth-contact-name{padding:8px 11px}.gareth-contact-name span{display:none}.gareth-contact>a{padding:0 12px}.gareth-contact>a span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.gareth-contact svg{width:18px;height:18px}}
+.trust-contact-links{display:flex;gap:14px;align-items:center}.trust-contact-links a{white-space:nowrap}
+
 /* Studio */
 .studio-page{background:#0a0a0a;min-height:100vh}.studio-nav{height:96px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
 .back-link{display:flex;align-items:center;gap:12px;text-transform:uppercase;letter-spacing:.15em;font-size:10px;color:var(--grey)}.back-link:hover{color:white}
